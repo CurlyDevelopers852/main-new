@@ -98,12 +98,12 @@ const NavBar: FunctionComponent = () => {
       <Toolbar sx={{
         justifyContent: 'space-between',
       }}>
-        <Avatar 
+        <img 
             className="curly-developers-logo"
             alt=""
-            src={`/assets/img/logo_dark_bg.png`}
-            variant="rounded"
-            sx={{
+            src="/assets/img/logo_dark_bg.png"
+            
+            style={{
               width:"220px",
               height:"110px"
             }}
