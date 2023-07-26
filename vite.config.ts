@@ -3,7 +3,6 @@ import path from 'path';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
-import { createHtmlPlugin } from 'vite-plugin-html'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +13,7 @@ export default defineConfig({
     strictPort: true,
     port: 3000,
   },
-  
+
   // test: {
   //   globals: true,
   //   environment: 'jsdom',
@@ -28,7 +27,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: (c) => {
+        entryFileNames: () => {
           return '[name].[hash].entry.js';
         },
         chunkFileNames: (c) => {

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { OuterBox } from "@/components/outer-container";
 import { HeadingTxt } from "@/components/title-txt";
 import CardBg from "@/components/background/color";
-import { Grid, Typography, styled } from "@mui/material";
+import { Grid, styled } from "@mui/material";
 
 import PowerModule from './powermodule';
 

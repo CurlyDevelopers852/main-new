@@ -12,7 +12,6 @@ import {
   styled,
   Typography, Grid,
   Link,
-  Avatar
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { SxProps } from '@mui/system';
@@ -102,7 +101,7 @@ const NavBar: FunctionComponent = () => {
             className="curly-developers-logo"
             alt=""
             src="/assets/img/logo_dark_bg.png"
-            
+
             style={{
               width:"220px",
               height:"110px"

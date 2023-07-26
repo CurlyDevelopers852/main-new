@@ -5,14 +5,6 @@ import { Button, styled } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { SvgIconProps } from '@mui/material';
 
-
-enum Direction {
-  Left = 'left',
-  Right = 'right',
-  Top = 'top',
-  Bottom = 'bottom',
-}
-
 interface Position {
   left: number;
   top: number;
@@ -61,7 +53,7 @@ const RunawayButton: React.FC<RunawayButtonProps> = ({ disabled = false, onClick
         if (left + buttonRect.width > parentRect.width) left = parentRect.width - buttonRect.width;
 
 
-        let animePosition = {
+        const animePosition = {
           top, left
         }
 
