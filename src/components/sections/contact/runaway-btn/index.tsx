@@ -86,7 +86,7 @@ const RunawayButton: React.FC<RunawayButtonProps> = ({ disabled = false, onClick
     if (disabled) {
       handleMouseInteraction(); 
     }
-  }, [buttonSize, disabled]);
+  }, [buttonSize, disabled, handleMouseInteraction]);
 
   return (
     <StyledButton
