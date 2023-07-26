@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://curlydevelopers852.github.io/main-new/",
   "scripts": {
     "dev": "vite",
     "tsc": "tsc",
@@ -12,7 +13,8 @@
     "generate:i18n": "node scripts/generate_i18n.mjs",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,md}'",
     "test": "vitest",
-    "test:ci": "vitest --no-threads"
+    "test:ci": "vitest --no-threads",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -35,6 +37,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^5.0.0",
     "prettier": "^2.8.8",
     "sass": "^1.63.6",
     "typescript": "^5.0.2",
