@@ -14,12 +14,14 @@ export default defineConfig({
     strictPort: true,
     port: 3000,
   },
+  
   // test: {
   //   globals: true,
   //   environment: 'jsdom',
   //   clearMocks: true,
   //   setupFiles: ['./vitest.setup.ts'],
   // },
+
   preview: {
     port: 3000,
   },
