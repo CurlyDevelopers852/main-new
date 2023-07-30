@@ -35,9 +35,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Set up Node
-          uses: actions/setup-node@v2
+          uses: actions/setup-node@v3
           with:
             node-version: 18.6.0
             cache: 'npm'
@@ -48,34 +48,30 @@ jobs:
         - name: List dist contents
           run: ls -al ./dist
         - name: Upload build artifact
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v3
           with:
             name: build-artifact
             path: ./dist
-  
-    upload:
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-        - name: Upload build artifact
-          uses: actions/upload-artifact@v2
-          with:
-            name: build-artifact
-            path: ./dist
-  
+
     deploy:
-      needs: upload
+      needs: build
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       environment:
         name: github-pages
         url: ${{ steps.deployment.outputs.page_url }}
       runs-on: ubuntu-latest
       steps:
+        - name: Checkout
+          uses: actions/checkout@v2
         - name: Set up Node
           uses: actions/setup-node@v2
           with:
             node-version: 18.6.0
             cache: 'npm'
+        - name: Install dependencies
+          run: npm install
+        - name: Build
+          run: npm run build
         - name: Download build artifact
           uses: actions/download-artifact@v2
           with:
