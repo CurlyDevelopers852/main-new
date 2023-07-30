@@ -16,7 +16,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { SxProps } from '@mui/system';
 
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseUrl = import.meta.env.VITE_BASE_URL ?? '/main-new';
 
 type StyledAppBarProps = {
   scrollopacity: number;

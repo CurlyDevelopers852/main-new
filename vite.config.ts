@@ -8,7 +8,7 @@ import { loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
-  let base = env.VITE_APP_BASE || '/';
+  let base = env.VITE_APP_BASE || '/main-new';
   if (!base.endsWith('/')) {
     base += '/';
   }
