@@ -7,7 +7,7 @@ import { Grid, styled } from "@mui/material";
 import PowerModule from './powermodule';
 
 
-const MainGrid = styled(Grid)({
+const MainGrid = styled(Grid)(({ theme }) => ({
   display: 'inline-flex',
   position: 'relative',
   flexDirection: 'column',
@@ -18,8 +18,17 @@ const MainGrid = styled(Grid)({
   marginTop: 0,
   maxWidth: '760px',
   margin: '0 auto',
-});
 
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+    // justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    height: 'auto', // Changed to 'auto' to accommodate content height
+    zIndex: 2,
+    margin: '0 auto',
+    paddingLeft: '32px',
+  },
+}));
 
 // Create other sections in a similar manner
 const PowerOfConnectionSection: FunctionComponent = () => {
