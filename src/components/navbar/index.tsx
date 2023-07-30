@@ -26,17 +26,27 @@ const StyledAppBar = styled(AppBar)<StyledAppBarProps>(({ theme, scrollopacity }
   fontFamily: 'Avenir',
   background: `rgba(0, 0, 0, ${scrollopacity})`,
   boxShadow: 'none',
+  overflow: 'hidden',
+  boxSizing: 'border-box',
   transition: theme.transitions.create("background", {
     duration: theme.transitions.duration.standard,
   }),
   [theme.breakpoints.down('sm')]: {
-    height: '40px', 
+    height: '50px', 
+  },
+}));
+
+const CustomToolbar = styled(Toolbar)(({ theme }) => ({
+  justifyContent: 'space-between',
+  [theme.breakpoints.down('sm')]: {
+    minHeight: '50px',
   },
 }));
 
 const LogoImage = styled('img')(({ theme }) => ({
   width: '220px',
   height: '110px',
+  padding: '12px 0',
   [theme.breakpoints.down('sm')]: {
     width: '150px',
     height: '75px',
@@ -109,9 +119,7 @@ const NavBar: FunctionComponent = () => {
 
   return (
     <StyledAppBar position="fixed" scrollopacity={scrollOpacityVal} >
-      <Toolbar sx={{
-        justifyContent: 'space-between',
-      }}>
+      <CustomToolbar>
         <LogoImage 
           className="curly-developers-logo"
           alt=""
@@ -204,7 +212,7 @@ const NavBar: FunctionComponent = () => {
           </Link>
           </Menu>
         </Box>
-      </Toolbar>
+      </CustomToolbar>
     </StyledAppBar>
   );
 };

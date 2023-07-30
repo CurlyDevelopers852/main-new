@@ -174,10 +174,11 @@ const SocialCard: React.FC<SocialCardProps> = ({ user }) => {
         <MainCard id={user.name} key={user.name}>
             <CardBg bgcolor={user.bgcolor}/>
             <MainActionArea>
-                <MainAvatar
+               {user.img ?  <MainAvatar
                     alt={user.name}
                     src={user.img}
                     />
+                    : null}
                 <CustomCardContent>
                     <UserNameTxt gutterBottom variant="h5">
                         {user.name}

@@ -19,6 +19,9 @@ const MainGrid = styled(Grid)(({ theme }) => ({
   boxSizing: 'border-box',
   marginTop: 0,
   flexDirection: useMediaQuery(theme.breakpoints.down('md')) ? 'column' : 'row',
+  [theme.breakpoints.down('md')]: {
+    margin: 0
+  },
 }));
 
 
@@ -34,6 +37,7 @@ const ItemGrid = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     height: '50vh',
     width: '100vw',
+    margin: 0
   },
 }));
 
@@ -42,7 +46,7 @@ const TheTeam: FunctionComponent = () => {
 
     const yaser: UserProps = {
         name: "Yaser Ibrahim",
-        img: "https://yessur3808.github.io/webb00/img/profpic-removebg.png",
+        img: "",
         position: 'Software Engineer',
         desc: "I'm a Full Stack Software Engineer, currently based in Hong Kong, that specializes in web development.",
 
