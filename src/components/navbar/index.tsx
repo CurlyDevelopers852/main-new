@@ -16,6 +16,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { SxProps } from '@mui/system';
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 type StyledAppBarProps = {
   scrollopacity: number;
@@ -28,9 +29,21 @@ const StyledAppBar = styled(AppBar)<StyledAppBarProps>(({ theme, scrollopacity }
   transition: theme.transitions.create("background", {
     duration: theme.transitions.duration.standard,
   }),
+  [theme.breakpoints.down('sm')]: {
+    height: '40px', 
+  },
 }));
 
-const GetStartedBtn = styled(Button)({
+const LogoImage = styled('img')(({ theme }) => ({
+  width: '220px',
+  height: '110px',
+  [theme.breakpoints.down('sm')]: {
+    width: '150px',
+    height: '75px',
+  },
+}));
+
+const GetStartedBtn = styled(Button)(({ theme }) => ({
   boxSizing: 'border-box',
   position: 'absolute',
   width: '240px',
@@ -39,11 +52,13 @@ const GetStartedBtn = styled(Button)({
   border: '2px solid #E9E9E9',
   borderRadius: '41px',
   margin: 'auto 0',
-  marginLeft: 2, 
+  marginLeft: 2,
   alignSelf: "flex-start",
-  fontWeight: '500',
- 
-});
+  fontWeight: 500,
+  [theme.breakpoints.down('md')]: {
+    display: 'none',
+  },
+}));
 
 const NavBar: FunctionComponent = () => {
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState<null | HTMLElement>(
@@ -85,7 +100,7 @@ const NavBar: FunctionComponent = () => {
   };
 
   const menuItems = [
-    { label: "Home", href: "/#get-started" },
+    { label: "Home", href: "#get-started" },
     { label: "About Us", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Our Team", href: "#team" },
@@ -97,46 +112,37 @@ const NavBar: FunctionComponent = () => {
       <Toolbar sx={{
         justifyContent: 'space-between',
       }}>
-        <img 
-            className="curly-developers-logo"
-            alt=""
-            src="/assets/img/logo_dark_bg.png"
-
-            style={{
-              width:"220px",
-              height:"110px"
+        <LogoImage 
+          className="curly-developers-logo"
+          alt=""
+          src={`${baseUrl}/assets/img/logo_dark_bg.png`}
+        />
+        <Grid item style={{ display: "flex", alignItems: "center" }}>
+          <Box id="desktop-menu-items" sx={{ display: { xs: 'none',  sm: 'none', md: 'block' } }}>
+            {menuItems.map((item, idx) => (
+          
+                <Button color="inherit" onClick={() => scrollTo(item.href)}
+            key={item.label} 
+            sx={{
+              marginLeft: idx !== 0 ? '12px' : '0',
             }}
-          />
-          <Grid item style={{ display: "flex", alignItems: "center" }}
-          >
-        <Box sx={{ display: { xs: 'none',  sm: 'none', md: 'block' } }}>
-          {menuItems.map((item, idx) => (
-         
-              <Button color="inherit" onClick={() => scrollTo(item.href)}
-          key={item.label} 
-          sx={{
-            marginLeft: idx !== 0 ? '12px' : '0',
-          }}
-          >
-                <Typography sx={{
-                  fontFamily: 'Avenir',
-                  fontSize: '22px',
-                  fontWeight: 800,
-                  lineHeight: '30px',
-                  letterSpacing: '0.05em',
-                  textAlign: 'center',
-                }}>
-                  {item.label}
-                </Typography>
-              </Button>
-          ))}
-          </Box>
-
-            
-
+            >
+                  <Typography sx={{
+                    fontFamily: 'Avenir',
+                    fontSize: '22px',
+                    fontWeight: 800,
+                    lineHeight: '30px',
+                    letterSpacing: '0.05em',
+                    textAlign: 'center',
+                  }}>
+                    {item.label}
+                  </Typography>
+                </Button>
+            ))}
+            </Box>
         </Grid>
 
-        <GetStartedBtn sx={{
+        <GetStartedBtn id="desktop-getstarted-btn" sx={{
               position: 'relative',
               
             }}
@@ -182,7 +188,7 @@ const NavBar: FunctionComponent = () => {
               </Link>
             ))}
             <Link href="#get-started">
-            <GetStartedBtn>
+            <GetStartedBtn  id="mobile-getstarted-btn">
               <Typography
                 sx={{
                   fontFamily: 'Avenir',

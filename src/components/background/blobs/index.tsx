@@ -30,7 +30,7 @@ const BackGroundBlob = () => {
       if (circlesRef.current && circlesRef.current.length > 0) {
         return circlesRef.current.map((circle, index) => {
           return gsap.to(circle, {
-            duration: Math.random() * 15 + 15,
+            duration: Math.random() * 10 + 15,
             x: `${randomCircles[index].cx + Math.random() * 50 - 25}%`,
             y: `${randomCircles[index].cy + Math.random() * 50 - 25}%`,
             scale: Math.random() * 1.5,
