@@ -45,6 +45,13 @@ jobs:
           run: npm install
         - name: Build
           run: npm run build
+        - name: List dist contents
+          run: ls -al ./dist
+        - name: Upload build artifact
+          uses: actions/upload-artifact@v2
+          with:
+            name: build-artifact
+            path: ./dist
   
     upload:
       needs: build
