@@ -52,7 +52,7 @@ const socialIconMap: SocialIconMap = {
     },
 };
 
-const MainCard = styled(Card)({
+const MainCard = styled(Card)(({ theme }) => ({
     width: '100%',
     height: '100%',
     padding: 0,  
@@ -61,7 +61,10 @@ const MainCard = styled(Card)({
     boxSizing: 'border-box',
     background: 'rgba(0,0,0,0)',
     borderRadius: '0',
-});
+    [theme.breakpoints.down('md')]: {
+        padding: '0 32px',
+    },
+}));
 
 const MainActionArea = styled(CardActionArea)({
     textAlign: 'center',
@@ -71,11 +74,27 @@ const MainActionArea = styled(CardActionArea)({
 });
 
 
-const MainAvatar = styled(Avatar)({
+const MainAvatar = styled(Avatar)(({ theme }) => ({
     margin: '220px auto 0 auto',
     width: 250, 
-    height: 250
-});
+    height: 250,
+    aspectRatio: '1 / 1',
+    [theme.breakpoints.down('md')]: {
+        margin: '20px auto 20px auto',
+        display: 'inline-block',
+        position: 'relative',
+        width: '20%',
+    },
+}));
+
+const CustomCardContent = styled(CardContent)(({ theme }) => ({
+    [theme.breakpoints.down('md')]: {
+        padding: '16px',
+        display: 'inline-block',
+        position: 'relative',
+        width: '70%',
+    },
+}));
 
 const UserNameTxt = styled(Typography)({
     fontFamily: 'Avenir',
@@ -159,17 +178,17 @@ const SocialCard: React.FC<SocialCardProps> = ({ user }) => {
                     alt={user.name}
                     src={user.img}
                     />
-                <CardContent>
-                <UserNameTxt gutterBottom variant="h5">
-                    {user.name}
-                </UserNameTxt>
-                <UserPositonTxt variant="subtitle1" color="text.secondary">
-                    {user.position}
-                </UserPositonTxt>
-                <UserDescTxt variant="body2" color="text.secondary">
-                    {user.desc}
-                </UserDescTxt>
-                </CardContent>
+                <CustomCardContent>
+                    <UserNameTxt gutterBottom variant="h5">
+                        {user.name}
+                    </UserNameTxt>
+                    <UserPositonTxt variant="subtitle1" color="text.secondary">
+                        {user.position}
+                    </UserPositonTxt>
+                    <UserDescTxt variant="body2" color="text.secondary">
+                        {user.desc}
+                    </UserDescTxt>
+                </CustomCardContent>
             </MainActionArea>
             <SocialCardActions>
                 {user.social.map((elem: { platform: Platform; link: string }, idx: React.Key | null | undefined) => (

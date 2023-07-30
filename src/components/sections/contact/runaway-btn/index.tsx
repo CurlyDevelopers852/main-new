@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, ReactElement } from 'react';
+import React, { useState, useLayoutEffect, useRef, ReactElement } from 'react';
 import anime from 'animejs';
 import { Button, styled } from '@mui/material';
 
@@ -24,47 +24,54 @@ interface RunawayButtonProps {
 
 const StyledButton = styled(Button)({
   position: 'absolute',
-  transition: 'none',
+  transition: 'all 0.3s ease',
 });
 
 
 const RunawayButton: React.FC<RunawayButtonProps> = ({ disabled = false, onClick, endIcon, txt }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState<Position>({ left: 0, top: 0 });
-  const [buttonSize, setButtonSize] = useState<Size>({ width: 0, height: 0 });
-
-  const handleMouseInteraction = () => {
+  
+  const handleMouseInteraction = (mouseEvent: React.MouseEvent) => {
     if (disabled) {
       const parent = buttonRef.current?.parentElement;
       if (parent) {
         const parentRect = parent.getBoundingClientRect();
         const buttonRect = buttonRef.current.getBoundingClientRect();
-        const spaceLeft = buttonRect.left - parentRect.left;
-        const spaceRight = parentRect.right - buttonRect.right;
-        const spaceTop = buttonRect.top - parentRect.top;
-        const spaceBottom = parentRect.bottom - buttonRect.bottom;
-
-        console.log('aaaa ', parentRect);
-
-        let left = position.left + (spaceRight < spaceLeft ? -60 : 60);
-        let top = position.top + (spaceBottom < spaceTop ? -60 : 60);
-
-        if (top < 0) top = 0;
-        if (left < 0) left = 0;
+  
+        const mouseX = mouseEvent.clientX;
+        const mouseY = mouseEvent.clientY;
+  
+        // Calculate the distances to each of the four corners from the mouse position
+        const distances = [
+          { x: parentRect.left, y: parentRect.top, d: Math.hypot(parentRect.left - mouseX, parentRect.top - mouseY) },
+          { x: parentRect.right, y: parentRect.top, d: Math.hypot(parentRect.right - mouseX, parentRect.top - mouseY) },
+          { x: parentRect.left, y: parentRect.bottom, d: Math.hypot(parentRect.left - mouseX, parentRect.bottom - mouseY) },
+          { x: parentRect.right, y: parentRect.bottom, d: Math.hypot(parentRect.right - mouseX, parentRect.bottom - mouseY) },
+        ];
+  
+        // Sort the distances in descending order
+        distances.sort((a, b) => b.d - a.d);
+  
+        // Select the corner that is furthest from the mouse position
+        const { x, y } = distances[0];
+  
+        // Ensure the button stays within the parent's boundaries
+        let left = x - parentRect.left;
+        let top = y - parentRect.top;
         if (top + buttonRect.height > parentRect.height) top = parentRect.height - buttonRect.height;
         if (left + buttonRect.width > parentRect.width) left = parentRect.width - buttonRect.width;
-
-
+  
         const animePosition = {
           top, left
         }
-
+  
         anime({
           targets: animePosition,
           left,
           top,
-          duration: 200,
-          easing: 'easeOutCirc',
+          duration: 500,
+          easing: 'easeOutQuad',
           round: 1,
           update: (anim) => {
             setPosition({
@@ -80,22 +87,16 @@ const RunawayButton: React.FC<RunawayButtonProps> = ({ disabled = false, onClick
   useLayoutEffect(() => {
     if (buttonRef.current) {
       const { width, height } = buttonRef.current.getBoundingClientRect();
-      setButtonSize({ width, height });
+      setPosition({ left: width / 2, top: height / 2 });
     }
   }, []);
-
-  useEffect(() => {
-    if (disabled) {
-      handleMouseInteraction(); 
-    }
-  }, [buttonSize, disabled, handleMouseInteraction]);
 
   return (
     <StyledButton
       ref={buttonRef}
       style={position}
       variant="contained"
-      onMouseOver={disabled ? handleMouseInteraction : undefined}
+      onMouseOver={disabled ? (e) => handleMouseInteraction(e) : undefined}
       onClick={disabled ? undefined : onClick}
       endIcon={endIcon || <SendIcon />} 
     >

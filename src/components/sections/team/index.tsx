@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
-import { Grid, styled } from "@mui/material";
+import { Grid, styled, useMediaQuery, useTheme } from "@mui/material";
 import SocialCard from "../../social-cards";
 import { UserProps, Platform } from '@/types/users/userprops';
 
 
-const MainGrid = styled(Grid)({
+const MainGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: 'rgba(0,0,0,0)',
   marginLeft: "auto",
   marginRight: "auto",
@@ -18,10 +18,11 @@ const MainGrid = styled(Grid)({
   overflow: 'hidden',
   boxSizing: 'border-box',
   marginTop: 0,
-});
+  flexDirection: useMediaQuery(theme.breakpoints.down('md')) ? 'column' : 'row',
+}));
 
 
-const ItemGrid = styled(Grid)({
+const ItemGrid = styled(Grid)(({ theme }) => ({
   marginLeft: "auto",
   marginRight: "auto",
   padding: 0,
@@ -30,7 +31,11 @@ const ItemGrid = styled(Grid)({
   height: '100vh',
   width: '50vw',
   flexGrow: 1,
-});
+  [theme.breakpoints.down('md')]: {
+    height: '50vh',
+    width: '100vw',
+  },
+}));
 
 const TheTeam: FunctionComponent = () => {
 

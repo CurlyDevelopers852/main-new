@@ -8,6 +8,8 @@ interface RandCircles {
   r: number;
 }
 
+const NUM_CIRCLES = 8;  // Declare the number of circles as a constant
+
 const BackGroundBlob = () => {
   const generateRandomCircles = useCallback((count: number): RandCircles[] => {
     return Array.from({ length: count }, () => ({
@@ -17,9 +19,10 @@ const BackGroundBlob = () => {
     }));
   }, []);
 
-  const randomCircles1: RandCircles[] = generateRandomCircles(8);
-  const randomCircles2: RandCircles[] = generateRandomCircles(8);
-  const randomCircles3: RandCircles[] = generateRandomCircles(8);
+  // Use constant to generate random circles
+  const randomCircles1: RandCircles[] = generateRandomCircles(NUM_CIRCLES);
+  const randomCircles2: RandCircles[] = generateRandomCircles(NUM_CIRCLES);
+  const randomCircles3: RandCircles[] = generateRandomCircles(NUM_CIRCLES);
 
   const circlesRef1 = useRef<(SVGCircleElement | null)[]>([]);
   const circlesRef2 = useRef<(SVGCircleElement | null)[]>([]);
@@ -45,7 +48,7 @@ const BackGroundBlob = () => {
     animateCircles(circlesRef1, randomCircles1);
     animateCircles(circlesRef2, randomCircles2);
     animateCircles(circlesRef3, randomCircles3);
-  }, [randomCircles1, randomCircles2, randomCircles3]);
+  }, [randomCircles1, randomCircles2, randomCircles3]); 
 
   return (
     <svg className="blobCont">
