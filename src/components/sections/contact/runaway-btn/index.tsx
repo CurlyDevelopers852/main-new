@@ -44,6 +44,8 @@ const RunawayButton: React.FC<RunawayButtonProps> = ({ disabled = false, onClick
         const spaceTop = buttonRect.top - parentRect.top;
         const spaceBottom = parentRect.bottom - buttonRect.bottom;
 
+        console.log('aaaa ', parentRect);
+
         let left = position.left + (spaceRight < spaceLeft ? -60 : 60);
         let top = position.top + (spaceBottom < spaceTop ? -60 : 60);
 
