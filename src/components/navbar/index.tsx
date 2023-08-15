@@ -1,5 +1,4 @@
-
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -10,9 +9,10 @@ import {
   MenuItem,
   ListItemText,
   styled,
-  Typography, Grid,
+  Typography,
+  Grid,
   Link,
-} from "@mui/material";
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { SxProps } from '@mui/system';
 
@@ -28,11 +28,11 @@ const StyledAppBar = styled(AppBar)<StyledAppBarProps>(({ theme, scrollopacity }
   boxShadow: 'none',
   overflow: 'hidden',
   boxSizing: 'border-box',
-  transition: theme.transitions.create("background", {
+  transition: theme.transitions.create('background', {
     duration: theme.transitions.duration.standard,
   }),
   [theme.breakpoints.down('sm')]: {
-    height: '50px', 
+    height: '50px',
   },
 }));
 
@@ -63,7 +63,7 @@ const GetStartedBtn = styled(Button)(({ theme }) => ({
   borderRadius: '41px',
   margin: 'auto 0',
   marginLeft: 2,
-  alignSelf: "flex-start",
+  alignSelf: 'flex-start',
   fontWeight: 500,
   [theme.breakpoints.down('md')]: {
     display: 'none',
@@ -71,9 +71,7 @@ const GetStartedBtn = styled(Button)(({ theme }) => ({
 }));
 
 const NavBar: FunctionComponent = () => {
-  const [mobileMenuAnchor, setMobileMenuAnchor] = useState<null | HTMLElement>(
-    null
-  );
+  const [mobileMenuAnchor, setMobileMenuAnchor] = useState<null | HTMLElement>(null);
   const [scrollOpacityVal, setScrollOpacityVal] = useState(0);
 
   const handleScroll = () => {
@@ -86,18 +84,18 @@ const NavBar: FunctionComponent = () => {
   };
 
   const scrollTo = (href: string) => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -110,68 +108,73 @@ const NavBar: FunctionComponent = () => {
   };
 
   const menuItems = [
-    { label: "Home", href: "#get-started" },
-    { label: "About Us", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Our Team", href: "#team" },
-    { label: "Contact", href: "#contact" },
+    { label: 'Home', href: '#get-started' },
+    { label: 'About Us', href: '#about' },
+    { label: 'Services', href: '#services' },
+    { label: 'Our Team', href: '#team' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   return (
-    <StyledAppBar position="fixed" scrollopacity={scrollOpacityVal} >
+    <StyledAppBar position="fixed" scrollopacity={scrollOpacityVal}>
       <CustomToolbar>
-        <LogoImage 
+        <LogoImage
           className="curly-developers-logo"
           alt=""
           src={`${baseUrl}/assets/img/logo_dark_bg.png`}
         />
-        <Grid item style={{ display: "flex", alignItems: "center" }}>
-          <Box id="desktop-menu-items" sx={{ display: { xs: 'none',  sm: 'none', md: 'block' } }}>
+        <Grid item style={{ display: 'flex', alignItems: 'center' }}>
+          <Box id="desktop-menu-items" sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
             {menuItems.map((item, idx) => (
-          
-                <Button color="inherit" onClick={() => scrollTo(item.href)}
-            key={item.label} 
-            sx={{
-              marginLeft: idx !== 0 ? '12px' : '0',
-            }}
-            >
-                  <Typography sx={{
+              <Button
+                color="inherit"
+                onClick={() => scrollTo(item.href)}
+                key={item.label}
+                sx={{
+                  marginLeft: idx !== 0 ? '12px' : '0',
+                }}
+              >
+                <Typography
+                  sx={{
                     fontFamily: 'Avenir',
                     fontSize: '22px',
                     fontWeight: 800,
                     lineHeight: '30px',
                     letterSpacing: '0.05em',
                     textAlign: 'center',
-                  }}>
-                    {item.label}
-                  </Typography>
-                </Button>
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              </Button>
             ))}
-            </Box>
+          </Box>
         </Grid>
 
-        <GetStartedBtn id="desktop-getstarted-btn" sx={{
-              position: 'relative',
-              
+        <GetStartedBtn
+          id="desktop-getstarted-btn"
+          sx={{
+            position: 'relative',
+          }}
+          onClick={() => scrollTo('#get-started')}
+        >
+          <Typography
+            sx={{
+              fontFamily: 'Avenir',
+              fontSize: '22px',
+              fontWeight: 800,
+              lineHeight: '30px',
+              letterSpacing: '0.05em',
+              textAlign: 'center',
+              textDecoration: 'none',
+              color: 'white',
             }}
-            onClick={() => scrollTo("#get-started")}
-            >
-              <Typography
-              sx={{
-                fontFamily: 'Avenir',
-                  fontSize: '22px',
-                  fontWeight: 800,
-                  lineHeight: '30px',
-                  letterSpacing: '0.05em',
-                  textAlign: 'center',
-                  textDecoration: 'none',
-                  color: 'white',
-              }}>
-                Get Started
-              </Typography>
-            </GetStartedBtn>
-            
-        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          >
+            Get Started
+          </Typography>
+        </GetStartedBtn>
+
+        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
           <IconButton
             size="large"
             edge="start"
@@ -189,27 +192,26 @@ const NavBar: FunctionComponent = () => {
             {menuItems.map((item) => (
               <Link href={item.href} key={item.label}>
                 <MenuItem onClick={closeMobileMenu}>
-                  <ListItemText>
-                  {item.label}
-                  </ListItemText>
+                  <ListItemText>{item.label}</ListItemText>
                 </MenuItem>
               </Link>
             ))}
             <Link href="#get-started">
-            <GetStartedBtn  id="mobile-getstarted-btn">
-              <Typography
-                sx={{
-                  fontFamily: 'Avenir',
+              <GetStartedBtn id="mobile-getstarted-btn">
+                <Typography
+                  sx={{
+                    fontFamily: 'Avenir',
                     fontSize: '22px',
                     fontWeight: 800,
                     lineHeight: '30px',
                     letterSpacing: '0.05em',
                     textAlign: 'center',
-                }}>
-                 Get Started
-              </Typography>
-            </GetStartedBtn>
-          </Link>
+                  }}
+                >
+                  Get Started
+                </Typography>
+              </GetStartedBtn>
+            </Link>
           </Menu>
         </Box>
       </CustomToolbar>

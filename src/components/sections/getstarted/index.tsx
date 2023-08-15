@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
-import { Typography, Button, Box, styled } from "@mui/material";
-import { OuterBox } from "@/components/outer-container";
-import CardBg from "@/components/background/color";
+import React, { FunctionComponent } from 'react';
+import { Typography, Button, Box, styled } from '@mui/material';
+import { OuterBox } from '@/components/outer-container';
+import CardBg from '@/components/background/color';
 
 const CenteredBox = styled(Box)({
   justifyContent: 'center',
@@ -28,7 +28,7 @@ const MainHeader = styled(Typography)({
   lineHeight: '66px',
   letterSpacing: '0.05em',
   textAlign: 'center',
-  display: 'block', 
+  display: 'block',
   alignItems: 'center',
   textTransform: 'uppercase',
 });
@@ -41,7 +41,6 @@ const SubHeader = styled(Typography)({
   letterSpacing: '0.05em',
   textAlign: 'center',
   textTransform: 'uppercase',
-
 });
 
 const MainBtn = styled(Button)({
@@ -56,42 +55,43 @@ const MainBtn = styled(Button)({
 const MainBtnTxt = styled(Typography)({
   textTransform: 'uppercase',
   fontSize: '28px',
-  
+
   fontWeight: 600,
   letterSpacing: '1px',
-
 });
 
 const GetStarted: FunctionComponent = () => {
   return (
-    <OuterBox id="get-started" className="section-1" sx={{
-      height: '100vh',
-    }}>
-
-      <CardBg bgcolor='#341D69' />
+    <OuterBox
+      id="get-started"
+      className="section-1"
+      sx={{
+        height: '100vh',
+      }}
+    >
+      <CardBg bgcolor="#341D69" />
 
       <InnerContainer>
         <CenteredBox>
           <MainHeader variant="h3" gutterBottom>
-              Web Developers And Designers For Web3
+            Web Developers And Designers For Web3
           </MainHeader>
         </CenteredBox>
 
         <CenteredBox>
-          <SubHeader variant="subtitle1">
-            Built On Ethereum
-          </SubHeader>
+          <SubHeader variant="subtitle1">Built On Ethereum</SubHeader>
         </CenteredBox>
 
-        <CenteredBox sx={{
-          marginTop: '72px',
-        }}>
+        <CenteredBox
+          sx={{
+            marginTop: '72px',
+          }}
+        >
           <MainBtn variant="contained">
             <MainBtnTxt>Get Started</MainBtnTxt>
           </MainBtn>
         </CenteredBox>
-      </InnerContainer> 
-      
+      </InnerContainer>
     </OuterBox>
   );
 };

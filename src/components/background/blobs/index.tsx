@@ -8,7 +8,7 @@ interface RandCircles {
   r: number;
 }
 
-const NUM_CIRCLES = 8;  // Declare the number of circles as a constant
+const NUM_CIRCLES = 8; // Declare the number of circles as a constant
 
 const BackGroundBlob = () => {
   const generateRandomCircles = useCallback((count: number): RandCircles[] => {
@@ -29,7 +29,10 @@ const BackGroundBlob = () => {
   const circlesRef3 = useRef<(SVGCircleElement | null)[]>([]);
 
   useEffect(() => {
-    function animateCircles(circlesRef: React.RefObject<(SVGCircleElement | null)[]>, randomCircles: RandCircles[]) {
+    function animateCircles(
+      circlesRef: React.RefObject<(SVGCircleElement | null)[]>,
+      randomCircles: RandCircles[],
+    ) {
       if (circlesRef.current && circlesRef.current.length > 0) {
         return circlesRef.current.map((circle, index) => {
           return gsap.to(circle, {
@@ -39,7 +42,7 @@ const BackGroundBlob = () => {
             scale: Math.random() * 1.5,
             repeat: -1,
             yoyo: true,
-            ease: "power1.inOut",
+            ease: 'power1.inOut',
           });
         });
       }
@@ -48,7 +51,7 @@ const BackGroundBlob = () => {
     animateCircles(circlesRef1, randomCircles1);
     animateCircles(circlesRef2, randomCircles2);
     animateCircles(circlesRef3, randomCircles3);
-  }, [randomCircles1, randomCircles2, randomCircles3]); 
+  }, [randomCircles1, randomCircles2, randomCircles3]);
 
   return (
     <svg className="blobCont">
