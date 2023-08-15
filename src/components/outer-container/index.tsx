@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/system";
+import { Box, styled } from '@mui/system';
 
 const OuterBox = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
@@ -13,9 +13,12 @@ const OuterBox = styled(Box)(({ theme }) => ({
   top: 0,
   left: 0,
   boxSizing: 'border-box',
-
-  [theme.breakpoints.down('sm')]: {
+  maxWidth: '100vw',
+  overflowX: 'hidden',
+  [theme.breakpoints.down('md')]: {
     padding: '5px 16px',
+    minWidth: 'calc(100% - 10px)',
+    width: 'calc(100% - 10px)',
   },
 }));
 

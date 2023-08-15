@@ -1,4 +1,4 @@
-import MainPage from '@pages/main'
+import MainPage from '@pages/main';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
 
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

@@ -1,20 +1,18 @@
-import { FunctionComponent } from "react";
-import { Grid, Typography, styled } from "@mui/material";
-import { OuterBox } from "@/components/outer-container";
-import { HeadingTxt } from "@/components/title-txt";
-import CardBg from "@/components/background/color";
+import { FunctionComponent } from 'react';
+import { Grid, Typography, styled } from '@mui/material';
+import { OuterBox } from '@/components/outer-container';
+import { HeadingTxt } from '@/components/title-txt';
+import CardBg from '@/components/background/color';
 
 const ItemGrid = styled(Grid)({
   width: '502px',
-  // height: '140px',
   borderRadius: '154px',
   opacity: 0.5,
   verticalAlign: 'middle',
-  // lineHeight: '140px',
   userSelect: 'none',
   position: 'relative',
   textAlign: 'center',
-  margin:'-10px 0',
+  margin: '-10px 0',
   zIndex: 2,
 });
 
@@ -30,13 +28,12 @@ const ItemTxt = styled(Typography)({
   backgroundColor: 'rgba(255,255,255,0.4)',
   color: '#fff',
   borderRadius: '50px',
-  padding:'24px 32px',
+  padding: '24px 32px',
   margin: 'auto',
   zIndex: 2,
 });
 
 const ServicesSection: FunctionComponent = () => {
-
   const itemList = [
     'Web Development',
     'Web Designing',
@@ -52,46 +49,57 @@ const ServicesSection: FunctionComponent = () => {
   return (
     <OuterBox id="services" className="section-3">
       <CardBg bgcolor={'#00AB6B'} />
-        <HeadingTxt className="our-services">OUR SERVICES</HeadingTxt>
+      <HeadingTxt className="our-services">OUR SERVICES</HeadingTxt>
 
-        <Grid container sx={{
+      <Grid
+        container
+        sx={{
           textAlign: 'center',
           alignItems: 'center',
+          justifyContent: 'center',
           position: 'relative',
+          paddingBottom: '20px',
           zIndex: 2,
-        }}>
-
-          {itemList.map((elem, idx) => (
-            <div key={idx}>
-              {idx%2 === 0 ? (
-                <>
-                  <ItemGrid item xs={6} md={8}>
-                    <ItemTxt>
-                      {elem}
-                    </ItemTxt>
-                  </ItemGrid>
-                  <ItemGrid item xs={6} md={4}>
-                    {' '}
-                  </ItemGrid>
-                </>
-              ) : (
-               <>
-                <ItemGrid item xs={6} md={4}>
-                    {' '}
-                  </ItemGrid>
-                  <ItemGrid item xs={6} md={8}>
-                    <ItemTxt>
-                      {elem}
-                    </ItemTxt>
-                  </ItemGrid>
-                </>
-              )}
-            </div>
-            
-          ))}
-
-        </Grid>
-      </OuterBox>
+        }}
+      >
+        {itemList.map((elem, idx) => (
+          <div key={idx}>
+            {idx % 2 === 0 ? (
+              <Grid
+                container
+                sx={{
+                  position: 'relative',
+                  paddingBottom: '12px',
+                  zIndex: 2,
+                }}
+              >
+                <ItemGrid item xs={12} sm={8} md={8} lg={8} xl={8}>
+                  <ItemTxt>{elem}</ItemTxt>
+                </ItemGrid>
+                <ItemGrid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                  {' '}
+                </ItemGrid>
+              </Grid>
+            ) : (
+              <Grid
+                container
+                sx={{
+                  position: 'relative',
+                  zIndex: 2,
+                }}
+              >
+                <ItemGrid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                  {' '}
+                </ItemGrid>
+                <ItemGrid item xs={12} sm={8} md={8} lg={8} xl={8}>
+                  <ItemTxt>{elem}</ItemTxt>
+                </ItemGrid>
+              </Grid>
+            )}
+          </div>
+        ))}
+      </Grid>
+    </OuterBox>
   );
 };
 
